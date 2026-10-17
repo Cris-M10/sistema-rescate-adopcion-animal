@@ -1,0 +1,48 @@
+%% (b) Capa MVC y patrón Observer
+classDiagram
+    direction TB
+
+    class CasoRescateController {
+        +postRescate()
+        +putEstado()
+    }
+
+    class CasoRescateView {
+        +render()
+    }
+
+    class CasoRescateRepository {
+        <<interface>>
+        +guardar()
+        +buscarPorId()
+    }
+
+    class NotificadorRescates {
+        -instancia$
+        -observadores
+        +getInstance()$
+        +suscribir()
+        +notificarNuevoRescate()
+    }
+
+    class ObservadorRescate {
+        <<interface>>
+        +alNuevoRescate()
+        +disponiblePara()
+    }
+
+    class VoluntarioObserver {
+        +alNuevoRescate()
+    }
+
+    class VeterinarioObserver {
+        +alNuevoRescate()
+    }
+
+    CasoRescateController ..> CasoRescateView : crea
+    CasoRescateController ..> CasoRescateRepository : usa
+    CasoRescateController ..> GestorCasos : consulta
+    GestorCasos ..> NotificadorRescates : publica
+    NotificadorRescates o--> ObservadorRescate : notifica
+    ObservadorRescate <|.. VoluntarioObserver
+    ObservadorRescate <|.. VeterinarioObserver

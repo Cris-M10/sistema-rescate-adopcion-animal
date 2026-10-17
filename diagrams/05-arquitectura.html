@@ -4,92 +4,81 @@
 <meta charset="utf-8">
 <style>
   *{box-sizing:border-box;}
-  body{margin:0;padding:28px;background:#fff;font-family:'DejaVu Sans',Arial,sans-serif;color:#0B2545;width:1180px;}
-  .layer{border:2px solid;border-radius:10px;padding:14px 16px 16px;position:relative;margin-bottom:0;}
-  .layer .tag{position:absolute;top:-13px;left:16px;background:#fff;padding:0 8px;font-size:13px;font-weight:bold;letter-spacing:.3px;}
-  .row{display:flex;gap:14px;align-items:stretch;justify-content:center;flex-wrap:wrap;}
-  .box{border:1.6px solid;border-radius:7px;padding:9px 12px;font-size:13.5px;line-height:1.25;text-align:center;background:#fff;min-width:130px;}
-  .box b{display:block;font-size:13.5px;}
-  .box small{display:block;font-size:11px;color:#5F6368;font-weight:normal;margin-top:2px;}
+  html,body{margin:0;padding:0;overflow:hidden;background:#fff;}
+  body{padding:12px;font-family:'DejaVu Sans',Arial,sans-serif;color:#0B2545;width:700px;}
+  .layer{border:2px solid;border-radius:9px;padding:16px 12px 12px;position:relative;margin-bottom:0;}
+  .layer .tag{position:absolute;top:-12px;left:14px;background:#fff;padding:0 7px;font-size:13px;font-weight:bold;}
+  .row{display:flex;gap:9px;flex-wrap:wrap;}
+  .box{flex:1 1 150px;border:1.5px solid;border-radius:6px;padding:7px 8px;font-size:13px;line-height:1.22;text-align:center;background:#fff;}
+  .box b{display:block;font-size:13px;}
+  .box small{display:block;font-size:10.5px;color:#5F6368;margin-top:2px;}
   .p{border-color:#1A73E8;background:#E8F0FE;}
   .a{border-color:#137333;background:#E6F4EA;}
   .d{border-color:#B06000;background:#FEF7E0;}
   .i{border-color:#8430CE;background:#F3E8FD;}
   .g{border-color:#5F6368;background:#F1F3F4;}
-  .arrow{text-align:center;font-size:20px;color:#5F6368;line-height:1;margin:6px 0 8px;}
-  .flow{display:flex;gap:10px;align-items:center;justify-content:center;}
-  .flow .arw{color:#5F6368;font-size:15px;}
-  .gitbox{border:1.6px dashed #5F6368;border-radius:7px;padding:7px 10px;font-size:12px;text-align:center;background:#F1F3F4;min-width:110px;}
-  .gitbox b{display:block;font-size:12px;}
-  .hint{font-size:10.5px;color:#5F6368;margin-top:6px;text-align:center;}
-  .split{display:flex;gap:10px;justify-content:center;}
+  .arrow{text-align:center;font-size:12px;color:#5F6368;margin:5px 0 6px;}
+  .gitbox{border:1.5px dashed #5F6368;border-radius:6px;padding:6px 8px;font-size:11.5px;text-align:center;background:#F1F3F4;flex:1 1 120px;}
+  .gitbox b{display:block;font-size:11.5px;}
 </style>
 </head>
 <body>
 
-<!-- 1. Presentación -->
 <div class="layer p">
   <span class="tag">1. PRESENTACIÓN · Vista + Controlador (MVC)</span>
   <div class="row">
     <div class="box p"><b>Cliente Web</b><small>HTML / Jinja</small></div>
     <div class="box p"><b>Cliente Móvil</b><small>App / PWA</small></div>
-    <div class="box p"><b>CasoRescateController</b><small>Recibe peticiones, delega en servicios</small></div>
-    <div class="box p"><b>CasoRescateView</b><small>Presenta el estado del caso</small></div>
+    <div class="box p"><b>CasoRescateController</b><small>recibe peticiones</small></div>
+    <div class="box p"><b>CasoRescateView</b><small>presenta el estado</small></div>
   </div>
 </div>
 <div class="arrow">▼ &nbsp; DTO / comandos &nbsp; ▼</div>
 
-<!-- 2. Aplicación -->
 <div class="layer a">
   <span class="tag">2. APLICACIÓN · Casos de uso</span>
   <div class="row">
-    <div class="box a"><b>RegistrarRescate<br>Service</b><small>RF-01, RF-02</small></div>
-    <div class="box a"><b>AsignarResponsable<br>Service</b><small>RF-03</small></div>
-    <div class="box a"><b>CambiarEstado<br>Service</b><small>RF-04, RF-06</small></div>
-    <div class="box a"><b>NotificarRescate<br>Service</b><small>RF-05</small></div>
+    <div class="box a"><b>RegistrarRescateService</b><small>RF-01, RF-02</small></div>
+    <div class="box a"><b>AsignarResponsableService</b><small>RF-03</small></div>
+    <div class="box a"><b>CambiarEstadoService</b><small>RF-04, RF-06</small></div>
+    <div class="box a"><b>NotificarRescateService</b><small>RF-05</small></div>
   </div>
 </div>
 <div class="arrow">▼ &nbsp; invoca el dominio &nbsp; ▼</div>
 
-<!-- 3. Dominio -->
 <div class="layer d">
   <span class="tag">3. DOMINIO · Modelo (reglas de negocio)</span>
   <div class="row">
-    <div class="box d"><b>GestorCasos</b><small>Singleton · motor de casos</small></div>
+    <div class="box d"><b>GestorCasos</b><small>Singleton</small></div>
     <div class="box d"><b>ExpedienteFactory</b><small>Factory Method</small></div>
-    <div class="box d"><b>Expediente</b><small>Perro · Gato · Fauna silvestre</small></div>
-    <div class="box d"><b>NotificadorRescates</b><small>Observer (Subject)</small></div>
-    <div class="box d"><b>CasoRescate</b><small>Entidad raíz · estados</small></div>
+    <div class="box d"><b>Expediente</b><small>Perro · Gato · Fauna</small></div>
+    <div class="box d"><b>NotificadorRescates</b><small>Observer</small></div>
+    <div class="box d"><b>CasoRescate</b><small>estados y reglas</small></div>
   </div>
 </div>
 <div class="arrow">▼ &nbsp; interfaces de repositorio (DIP) &nbsp; ▼</div>
 
-<!-- 4. Infraestructura -->
 <div class="layer i">
-  <span class="tag">4. INFRAESTRUCTURA · Persistencia y servicios externos</span>
+  <span class="tag">4. INFRAESTRUCTURA · Persistencia y servicios</span>
   <div class="row">
     <div class="box i"><b>CasoRescateRepository</b><small>JPA / SQL</small></div>
-    <div class="box i"><b>Servicio de correo</b><small>SMTP</small></div>
-    <div class="box i"><b>Servicio push</b><small>FCM</small></div>
-    <div class="box i"><b>Repositorio Git</b><small>GitHub</small></div>
+    <div class="box i"><b>Correo</b><small>SMTP</small></div>
+    <div class="box i"><b>Push</b><small>FCM</small></div>
+    <div class="box i"><b>Git</b><small>GitHub</small></div>
   </div>
 </div>
 
-<div class="arrow" style="margin:16px 0 10px;">▼ &nbsp; el flujo de versiones acompaña a cada capa &nbsp; ▼</div>
+<div class="arrow" style="margin:10px 0 8px;">▼ &nbsp; el flujo de versiones acompaña cada capa &nbsp; ▼</div>
 
-<!-- Gitflow -->
 <div class="layer g">
   <span class="tag">FLUJO DE VERSIONES · GITFLOW</span>
-  <div class="flow">
-    <div class="gitbox g"><b>feature/*</b>avances por requerimiento</div>
-    <span class="arw">──merge --no-ff──▶</span>
-    <div class="gitbox g"><b>develop</b>integración continua</div>
-    <span class="arw">──release──▶</span>
+  <div class="row">
+    <div class="gitbox g"><b>feature/*</b>avances</div>
+    <div class="gitbox g"><b>develop</b>integración</div>
     <div class="gitbox g"><b>release/1.0</b>validación</div>
-    <span class="arw">──merge + tag──▶</span>
     <div class="gitbox g"><b>master</b>v1.0 estable</div>
   </div>
-  <div class="hint">Cada rama feature/* se integra a develop con merge --no-ff; release/* se fusiona en master y develop.</div>
+  <div class="arrow" style="margin:4px 0 0;">merge --no-ff → release → merge + tag</div>
 </div>
 
 </body>
