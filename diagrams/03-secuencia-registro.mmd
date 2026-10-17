@@ -1,0 +1,32 @@
+%% Secuencia - Registrar un rescate y notificar (Singleton + Factory Method + Observer)
+sequenceDiagram
+    autonumber
+    actor C as Ciudadano
+    participant V as CasoRescateView
+    participant CT as CasoRescateController
+    participant G as GestorCasos<br/>(Singleton)
+    participant F as ExpedienteFactory
+    participant E as Expediente
+    participant N as NotificadorRescates<br/>(Subject)
+    participant O1 as VoluntarioObserver
+    participant O2 as VeterinarioObserver
+    participant R as CasoRescateRepository
+
+    C->>V: Envía formulario de rescate (especie, ubicación, descripción)
+    V->>CT: postRescate(SolicitudRescate)
+    CT->>G: getInstance()
+    G-->>CT: instancia única
+    CT->>G: crearCaso(reportante, especie, ubicacion)
+    G->>F: crear(especie)
+    F-->>G: Expediente (Perro | Gato | FaunaSilvestre)
+    G->>G: new CasoRescate(estado = REPORTADO)
+    G->>R: guardar(caso)
+    R-->>G: confirmación
+    G->>N: notificarNuevoRescate(caso)
+    N->>O1: alNuevoRescate(caso)
+    N->>O2: alNuevoRescate(caso)
+    O1-->>C: notificación push al voluntario disponible
+    O2-->>C: notificación al veterinario de turno
+    G-->>CT: CasoRescate
+    CT->>V: render()
+    V-->>C: Confirmación con número de caso

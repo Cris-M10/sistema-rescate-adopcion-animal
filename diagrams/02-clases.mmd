@@ -1,0 +1,129 @@
+%% Diagrama de clases UML - patrones Singleton, Factory Method, Observer, MVC
+classDiagram
+    direction TB
+
+    class CasoRescateController {
+        -GestorCasos gestor
+        +postRescate(SolicitudRescate) Respuesta
+        +getCaso(id) Respuesta
+        +putEstado(id, EstadoCaso) Respuesta
+    }
+
+    class CasoRescateView {
+        -CasoRescate caso
+        +render() Respuesta
+        +mostrarEstado() String
+    }
+
+    class CasoRescate {
+        -String id
+        -Especie especie
+        -EstadoCaso estado
+        -String ubicacion
+        -String descripcion
+        -String responsableId
+        -Expediente expediente
+        +cambiarEstado(EstadoCaso) void
+        +asignarResponsable(String) void
+        +esTransicionValida(EstadoCaso) boolean
+    }
+
+    class GestorCasos {
+        -GestorCasos instancia$
+        -Map~String,CasoRescate~ casos
+        -CasoRescateRepository repositorio
+        -GestorCasos()
+        +getInstance() GestorCasos$
+        +crearCaso(reportante, especie, ubicacion) CasoRescate
+        +registrar(CasoRescate) void
+        +buscar(String) CasoRescate
+    }
+
+    class ExpedienteFactory {
+        +crear(Especie) Expediente$
+    }
+
+    class Expediente {
+        <<interface>>
+        +resumenClinico() String
+        +requiereEsterilizacion() boolean
+    }
+
+    class ExpedientePerro {
+        +resumenClinico() String
+    }
+    class ExpedienteGato {
+        +resumenClinico() String
+    }
+    class ExpedienteFaunaSilvestre {
+        +resumenClinico() String
+    }
+
+    class NotificadorRescates {
+        -NotificadorRescates instancia$
+        -List~ObservadorRescate~ observadores
+        +getInstance() NotificadorRescates$
+        +suscribir(ObservadorRescate) void
+        +desuscribir(ObservadorRescate) void
+        +notificarNuevoRescate(CasoRescate) void
+    }
+
+    class ObservadorRescate {
+        <<interface>>
+        +alNuevoRescate(CasoRescate) void
+        +disponiblePara(CasoRescate) boolean
+    }
+
+    class VoluntarioObserver {
+        -String voluntarioId
+        +alNuevoRescate(CasoRescate) void
+        +disponiblePara(CasoRescate) boolean
+    }
+
+    class VeterinarioObserver {
+        -String veterinarioId
+        +alNuevoRescate(CasoRescate) void
+        +disponiblePara(CasoRescate) boolean
+    }
+
+    class CasoRescateRepository {
+        <<interface>>
+        +guardar(CasoRescate) void
+        +buscarPorId(String) CasoRescate
+        +listarPorEstado(EstadoCaso) List
+    }
+
+    class Especie {
+        <<enumeration>>
+        PERRO
+        GATO
+        FAUNA_SILVESTRE
+    }
+
+    class EstadoCaso {
+        <<enumeration>>
+        REPORTADO
+        RESCATADO
+        EN_TRATAMIENTO
+        ADOPCION
+        LIBERACION
+        CERRADO
+    }
+
+    CasoRescateController --> GestorCasos : usa
+    CasoRescateController --> CasoRescateView : crea
+    CasoRescateView --> CasoRescate : lee
+    GestorCasos --> CasoRescate : gestiona
+    GestorCasos --> CasoRescateRepository : depende de
+    GestorCasos --> NotificadorRescates : publica evento
+    GestorCasos ..> ExpedienteFactory : solicita creación
+    ExpedienteFactory ..> Expediente : crea
+    Expediente <|.. ExpedientePerro
+    Expediente <|.. ExpedienteGato
+    Expediente <|.. ExpedienteFaunaSilvestre
+    CasoRescate --> Expediente : posee
+    CasoRescate --> Especie
+    CasoRescate --> EstadoCaso
+    NotificadorRescates o--> ObservadorRescate : notifica
+    ObservadorRescate <|.. VoluntarioObserver
+    ObservadorRescate <|.. VeterinarioObserver
