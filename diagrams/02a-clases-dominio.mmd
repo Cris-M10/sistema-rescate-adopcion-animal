@@ -1,0 +1,65 @@
+%% (a) Modelo de dominio y patrones creacionales
+classDiagram
+    direction TB
+
+    class CasoRescate {
+        -String id
+        -Especie especie
+        -EstadoCaso estado
+        -String responsableId
+        +cambiarEstado(EstadoCaso) void
+        +esTransicionValida(EstadoCaso) boolean
+    }
+
+    class GestorCasos {
+        -GestorCasos instancia$
+        -Map casos
+        +getInstance() GestorCasos$
+        +crearCaso() CasoRescate
+        +registrar(CasoRescate) void
+    }
+
+    class ExpedienteFactory {
+        +crear(Especie) Expediente$
+    }
+
+    class Expediente {
+        <<interface>>
+        +resumenClinico() String
+    }
+
+    class ExpedientePerro {
+        +resumenClinico() String
+    }
+    class ExpedienteGato {
+        +resumenClinico() String
+    }
+    class ExpedienteFaunaSilvestre {
+        +resumenClinico() String
+    }
+
+    class Especie {
+        <<enumeration>>
+        PERRO
+        GATO
+        FAUNA_SILVESTRE
+    }
+
+    class EstadoCaso {
+        <<enumeration>>
+        RESCATADO
+        EN_TRATAMIENTO
+        ADOPCION
+        LIBERACION
+        CERRADO
+    }
+
+    GestorCasos --> CasoRescate : gestiona
+    GestorCasos ..> ExpedienteFactory : solicita
+    ExpedienteFactory ..> Expediente : crea
+    CasoRescate --> Expediente : posee
+    CasoRescate --> Especie
+    CasoRescate --> EstadoCaso
+    Expediente <|.. ExpedientePerro
+    Expediente <|.. ExpedienteGato
+    Expediente <|.. ExpedienteFaunaSilvestre

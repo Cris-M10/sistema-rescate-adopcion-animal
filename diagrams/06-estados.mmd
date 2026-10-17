@@ -1,0 +1,14 @@
+%% Máquina de estados del caso de rescate
+stateDiagram-v2
+    [*] --> REPORTADO : reporta
+    REPORTADO --> RESCATADO : confirma rescate
+    REPORTADO --> CERRADO : reporte inválido
+    RESCATADO --> EN_TRATAMIENTO : inicia tratamiento
+    RESCATADO --> CERRADO : no requiere atención
+    EN_TRATAMIENTO --> EN_TRATAMIENTO : control
+    EN_TRATAMIENTO --> ADOPCION : apto para adopción
+    EN_TRATAMIENTO --> LIBERACION : fauna rehabilitada
+    EN_TRATAMIENTO --> CERRADO : no viable
+    ADOPCION --> CERRADO : adopción formalizada
+    LIBERACION --> CERRADO : liberación
+    CERRADO --> [*]

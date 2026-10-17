@@ -1,0 +1,26 @@
+%% Secuencia - Cambio de estado con validación de transición y notificación
+sequenceDiagram
+    autonumber
+    actor V as Voluntario /<br/>Veterinario
+    participant CT as CasoRescateController
+    participant G as GestorCasos<br/>(Singleton)
+    participant CR as CasoRescate
+    participant N as NotificadorRescates<br/>(Subject)
+    participant AD as Administrador<br/>(Observer)
+
+    V->>CT: putEstado(id, nuevoEstado)
+    CT->>G: buscar(id)
+    G-->>CT: CasoRescate
+    CT->>CR: esTransicionValida(nuevoEstado)
+    alt Transición permitida
+        CR-->>CT: true
+        CT->>CR: cambiarEstado(nuevoEstado)
+        CR->>CR: actualiza estado e historial
+        CR->>N: publica evento de cambio
+        N->>AD: alCambioEstado(caso)
+        AD-->>V: confirmación y auditoría
+        CT-->>V: estado actualizado
+    else Transición no permitida
+        CR-->>CT: false
+        CT-->>V: error de validación
+    end

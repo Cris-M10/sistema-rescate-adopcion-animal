@@ -1,0 +1,22 @@
+%% Secuencia - Registro de un rescate y notificación
+sequenceDiagram
+    autonumber
+    actor C as Ciudadano
+    participant CT as Controller
+    participant G as GestorCasos
+    participant F as Factory
+    participant N as Notificador
+    participant O as Observer
+
+    C->>CT: postRescate()
+    CT->>G: getInstance()
+    G-->>CT: instancia
+    CT->>G: crearCaso()
+    G->>F: crear(especie)
+    F-->>G: Expediente
+    G->>G: guardar(caso)
+    G->>N: notificar(caso)
+    N->>O: alNuevoRescate()
+    O-->>C: push
+    G-->>CT: CasoRescate
+    CT-->>C: confirmación

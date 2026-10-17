@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#ffffff;overflow:hidden;font-family:'DejaVu Sans',Arial,sans-serif;}
+  #box{display:inline-block;padding:24px;background:#ffffff;}
+  #box svg{display:block;}
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+mermaid.initialize({
+  startOnLoad:false,
+  theme:'neutral',
+  securityLevel:'loose',
+  fontFamily:'DejaVu Sans, Arial, sans-serif',
+  flowchart:{htmlLabels:false, curve:'basis', nodeSpacing:45, rankSpacing:60, useMaxWidth:false},
+  sequence:{useMaxWidth:false, mirrorActors:false, wrap:false},
+  class:{useMaxWidth:false},
+  state:{useMaxWidth:false},
+  themeVariables:{fontFamily:'DejaVu Sans, Arial, sans-serif', fontSize:'15px', primaryColor:'#E8F0FE', primaryBorderColor:'#1A73E8', lineColor:'#5F6368'}
+});
+window.renderDiagram = async function(code){
+  const box = document.getElementById('box');
+  box.innerHTML = '';
+  const {svg} = await mermaid.render('d' + Date.now(), code);
+  box.innerHTML = svg;
+  const el = box.querySelector('svg');
+  el.removeAttribute('style');
+  const r = el.getBoundingClientRect();
+  return {w: Math.ceil(r.width), h: Math.ceil(r.height)};
+};
+</script>
+</body>
+</html>
