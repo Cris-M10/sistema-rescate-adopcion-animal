@@ -1,0 +1,28 @@
+# Sistema / SO
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# Java
+target/
+*.class
+*.jar
+
+# Node
+node_modules/
+
+# Documentos temporales
+*.aux
+*.log
+*.out
+~$*.docx
