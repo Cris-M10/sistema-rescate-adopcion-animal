@@ -1,0 +1,73 @@
+%% Arquitectura general en capas con integración del flujo de versiones
+flowchart TB
+    classDef pres fill:#E8F0FE,stroke:#1A73E8,color:#0B2545
+    classDef app fill:#E6F4EA,stroke:#137333,color:#0B2545
+    classDef dom fill:#FEF7E0,stroke:#B06000,color:#0B2545
+    classDef inf fill:#F3E8FD,stroke:#8430CE,color:#0B2545
+    classDef git fill:#F1F3F4,stroke:#5F6368,color:#202124
+
+    subgraph P["1. Presentación (Vista + Controlador)"]
+        direction LR
+        W["Web<br/>HTML/Jinja"]:::pres
+        M["Móvil"]:::pres
+        CC["CasoRescateController"]:::pres
+        CV["CasoRescateView"]:::pres
+    end
+
+    subgraph A["2. Aplicación (casos de uso)"]
+        direction LR
+        S1["RegistrarRescate<br/>Service"]:::app
+        S2["AsignarResponsable<br/>Service"]:::app
+        S3["CambiarEstado<br/>Service"]:::app
+    end
+
+    subgraph D["3. Dominio (Modelo)"]
+        direction LR
+        GC["GestorCasos<br/>Singleton"]:::dom
+        EF["ExpedienteFactory<br/>Factory Method"]:::dom
+        EX["Expediente<br/>Perro | Gato | Fauna"]:::dom
+        NR["NotificadorRescates<br/>Observer"]:::dom
+        CR["CasoRescate"]:::dom
+    end
+
+    subgraph I["4. Infraestructura"]
+        direction LR
+        REP["CasoRescateRepository<br/>JPA / SQL"]:::inf
+        MAIL["Correo"]:::inf
+        PUSH["Push"]:::inf
+    end
+
+    subgraph G["Flujo de versiones (Gitflow)"]
+        direction LR
+        FT["feature/*<br/>avances"]:::git
+        DV["develop<br/>integración"]:::git
+        RL["release/*<br/>entrega"]:::git
+        MS["master<br/>v1.0 estable"]:::git
+    end
+
+    P ==> A
+    A ==> D
+    D ==> I
+
+    W --> CC
+    M --> CC
+    CC --> CV
+    CC --> S1
+    CC --> S2
+    CC --> S3
+    S1 --> GC
+    S2 --> GC
+    S3 --> CR
+    GC --> CR
+    GC --> EF
+    EF --> EX
+    CR --> EX
+    GC --> NR
+    GC --> REP
+    CR --> REP
+    NR --> MAIL
+    NR --> PUSH
+
+    FT -->|merge --no-ff| DV
+    DV -->|release| RL
+    RL -->|merge + tag| MS

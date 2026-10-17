@@ -1,0 +1,39 @@
+%% Diagrama de casos de uso - Sistema de Control de Rescate y Adopcion Animal
+flowchart LR
+    classDef actor fill:#E8F0FE,stroke:#1A73E8,stroke-width:1.5px,color:#0B2545
+    classDef uc fill:#FFFFFF,stroke:#5F6368,stroke-width:1.2px,color:#202124
+    classDef sys fill:#F8F9FA,stroke:#1A73E8,stroke-width:2px,stroke-dasharray: 6 4
+
+    CIU(["Ciudadano /<br/>Reportante"]):::actor
+    VOL(["Voluntario /<br/>Veterinario"]):::actor
+    ADM(["Administrador del<br/>Refugio"]):::actor
+
+    subgraph SISTEMA["Sistema de Control de Rescate y Adopción Animal"]
+        direction TB
+        UC1(["Registrar reporte<br/>de rescate"]):::uc
+        UC2(["Consultar estado<br/>del caso"]):::uc
+        UC3(["Categorizar especie<br/>del animal"]):::uc
+        UC4(["Ver casos<br/>asignados"]):::uc
+        UC5(["Actualizar estado<br/>del caso"]):::uc
+        UC6(["Registrar<br/>tratamiento"]):::uc
+        UC7(["Asignar voluntario /<br/>veterinario"]):::uc
+        UC8(["Gestionar usuarios<br/>y roles"]):::uc
+        UC9(["Consultar indicadores<br/>de gestión"]):::uc
+        UC10(["Recibir notificación<br/>de nuevo rescate"]):::uc
+    end
+
+    CIU --> UC1
+    CIU --> UC2
+    UC1 -.->|include| UC3
+
+    VOL --> UC4
+    VOL --> UC5
+    VOL --> UC6
+    VOL --> UC10
+    UC5 -.->|include| UC10
+
+    ADM --> UC7
+    ADM --> UC8
+    ADM --> UC9
+    ADM --> UC1
+    UC7 -.->|include| UC10
