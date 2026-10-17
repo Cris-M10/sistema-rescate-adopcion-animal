@@ -1,18 +1,14 @@
 %% Máquina de estados del caso de rescate
 stateDiagram-v2
-    [*] --> REPORTADO : Ciudadano registra el reporte
-    REPORTADO --> RESCATADO : El voluntario confirma el rescate
-    REPORTADO --> CERRADO : Reporte inválido o duplicado
-
-    RESCATADO --> EN_TRATAMIENTO : El veterinario inicia tratamiento
-    RESCATADO --> CERRADO : El animal no requiere atención
-
-    EN_TRATAMIENTO --> EN_TRATAMIENTO : Control o recaída
-    EN_TRATAMIENTO --> ADOPCION : Perro o gato apto para adopción
-    EN_TRATAMIENTO --> LIBERACION : Fauna silvestre rehabilitada
-    EN_TRATAMIENTO --> CERRADO : Caso no viable
-
-    ADOPCION --> CERRADO : Se formaliza la adopción
-    LIBERACION --> CERRADO : Se libera en su hábitat
-
+    [*] --> REPORTADO : reporta
+    REPORTADO --> RESCATADO : confirma rescate
+    REPORTADO --> CERRADO : reporte inválido
+    RESCATADO --> EN_TRATAMIENTO : inicia tratamiento
+    RESCATADO --> CERRADO : no requiere atención
+    EN_TRATAMIENTO --> EN_TRATAMIENTO : control
+    EN_TRATAMIENTO --> ADOPCION : apto para adopción
+    EN_TRATAMIENTO --> LIBERACION : fauna rehabilitada
+    EN_TRATAMIENTO --> CERRADO : no viable
+    ADOPCION --> CERRADO : adopción formalizada
+    LIBERACION --> CERRADO : liberación
     CERRADO --> [*]
