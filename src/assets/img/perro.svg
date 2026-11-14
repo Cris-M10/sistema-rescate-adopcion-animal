@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="perro-titulo">
+  <title id="perro-titulo">Categoría: perros</title>
+  <path d="M13 24 L6 6 L25 19 Z" fill="#8b5e34"/>
+  <path d="M51 24 L58 6 L39 19 Z" fill="#8b5e34"/>
+  <rect x="13" y="16" width="38" height="32" rx="17" fill="#a9743c"/>
+  <circle cx="24" cy="31" r="2.7" fill="#221a12"/>
+  <circle cx="40" cy="31" r="2.7" fill="#221a12"/>
+  <ellipse cx="32" cy="41" rx="7" ry="5" fill="#5c3a1e"/>
+  <circle cx="32" cy="39" r="3.2" fill="#221a12"/>
+</svg>

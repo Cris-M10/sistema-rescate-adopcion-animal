@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="fauna-titulo">
+  <title id="fauna-titulo">Categoría: fauna silvestre</title>
+  <ellipse cx="29" cy="38" rx="17" ry="12" fill="#3a7d44"/>
+  <circle cx="48" cy="23" r="9" fill="#4a9a55"/>
+  <path d="M55 22 L66 26 L55 30 Z" fill="#c98a2b"/>
+  <circle cx="51" cy="21" r="1.8" fill="#0f2b14"/>
+  <path d="M24 34 Q34 26 42 34 L34 42 Z" fill="#2c5e34"/>
+  <path d="M12 38 L18 34 L20 44 Z" fill="#2c5e34"/>
+  <path d="M22 50 L30 54 L30 58" stroke="#c98a2b" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
