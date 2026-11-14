@@ -6,115 +6,170 @@
   <meta name="description" content="Panel de control del sistema de control de rescate y adopción animal del Refugio Patitas.">
   <meta name="author" content="Cristopher Montoya">
   <title>Inicio · Refugio Patitas — Control de Rescate y Adopción</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
   <!-- Encabezado común: logo y navegación -->
-  <header>
-    <a href="index.html" title="Ir al panel de control">
-      <img src="assets/img/logo.svg" alt="Logotipo del Refugio Patitas" width="48" height="48">
-      <span>Refugio Patitas</span>
-    </a>
-    <nav aria-label="Navegación principal">
-      <ul>
-        <li><a href="index.html" aria-current="page">Inicio</a></li>
-        <li><a href="reportar.html">Reportar rescate</a></li>
-        <li><a href="rescates.html">Casos registrados</a></li>
-      </ul>
-    </nav>
+  <header class="cabecera">
+    <div class="cabecera__barra">
+
+      <a class="marca" href="index.html">
+        <span class="marca__icono">
+          <img src="assets/img/logo.svg" alt="" width="24" height="24">
+        </span>
+        <span class="marca__texto">
+          <strong>Refugio Patitas</strong>
+          <small>Rescate y adopción</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <ul class="nav__lista">
+          <li><a class="nav__enlace nav__enlace--activo" href="index.html" aria-current="page">Inicio</a></li>
+          <li><a class="nav__enlace" href="reportar.html">Reportar rescate</a></li>
+          <li><a class="nav__enlace" href="rescates.html">Casos registrados</a></li>
+        </ul>
+      </nav>
+
+      <a class="btn btn--acento btn--chico" href="reportar.html">Nuevo caso</a>
+
+    </div>
   </header>
 
   <!-- Contenido exclusivo de la página -->
   <main>
 
-    <!-- Bienvenida -->
-    <section aria-labelledby="bienvenida-titulo">
-      <h1 id="bienvenida-titulo">Panel de control del refugio</h1>
-      <p>
-        Bienvenido al sistema de control de rescate y adopción animal. Desde aquí puede
-        consultar el estado general del refugio, registrar un nuevo animal rescatado y
-        revisar el listado completo de casos.
+    <!-- Portada -->
+    <section class="portada" aria-labelledby="bienvenida-titulo">
+      <p class="portada__etiqueta">Panel de control · Refugio</p>
+      <h1 id="bienvenida-titulo">Control de Rescate y Adopción</h1>
+      <p class="portada__bajada">
+        Bienvenido al sistema de gestión del Refugio Patitas. Desde aquí puede consultar el
+        estado general del refugio, registrar un nuevo animal rescatado y revisar el listado
+        completo de casos.
       </p>
+      <div class="portada__acciones">
+        <a class="btn btn--acento" href="reportar.html">Reportar un rescate</a>
+        <a class="btn btn--fantasma" href="rescates.html">Ver casos registrados</a>
+      </div>
     </section>
 
     <!-- Resumen del refugio -->
-    <section aria-labelledby="resumen-titulo">
-      <h2 id="resumen-titulo">Resumen del refugio</h2>
+    <section class="seccion" aria-labelledby="resumen-titulo">
+      <h2 class="seccion__titulo" id="resumen-titulo">Resumen del refugio</h2>
 
-      <article>
-        <h3>18</h3>
-        <p>Casos abiertos</p>
-      </article>
+      <div class="resumen">
+        <article class="stat">
+          <h3 class="stat__num">18</h3>
+          <p class="stat__label">Casos abiertos</p>
+        </article>
 
-      <article>
-        <h3>9</h3>
-        <p>En tratamiento</p>
-      </article>
+        <article class="stat">
+          <h3 class="stat__num">9</h3>
+          <p class="stat__label">En tratamiento</p>
+        </article>
 
-      <article>
-        <h3>5</h3>
-        <p>En adopción</p>
-      </article>
+        <article class="stat">
+          <h3 class="stat__num">5</h3>
+          <p class="stat__label">En adopción</p>
+        </article>
 
-      <article>
-        <h3>12</h3>
-        <p>Voluntarios disponibles</p>
-      </article>
+        <article class="stat">
+          <h3 class="stat__num">12</h3>
+          <p class="stat__label">Voluntarios disponibles</p>
+        </article>
+      </div>
     </section>
 
     <!-- Últimos rescates registrados -->
-    <section aria-labelledby="recientes-titulo">
-      <h2 id="recientes-titulo">Últimos rescates registrados</h2>
+    <section class="seccion" aria-labelledby="recientes-titulo">
+      <h2 class="seccion__titulo" id="recientes-titulo">Últimos rescates registrados</h2>
 
-      <article>
-        <h3><a href="rescates.html#caso-006">Luna — perro adulto</a></h3>
-        <p>Rescatada cerca del mercado central. Estado: en tratamiento.</p>
-      </article>
+      <div class="rejilla">
+        <article class="tarjeta">
+          <p class="tarjeta__meta"><span class="etiqueta">Perro</span></p>
+          <h3><a href="rescates.html#caso-006">Luna — perro adulto</a></h3>
+          <p class="tarjeta__texto">Rescatada cerca del mercado central. Estado: en tratamiento.</p>
+        </article>
 
-      <article>
-        <h3><a href="rescates.html#caso-005">Bigotes — gato cachorro</a></h3>
-        <p>Encontrado en la vía perimetral. Estado: en adopción.</p>
-      </article>
+        <article class="tarjeta">
+          <p class="tarjeta__meta"><span class="etiqueta">Gato</span></p>
+          <h3><a href="rescates.html#caso-005">Bigotes — gato cachorro</a></h3>
+          <p class="tarjeta__texto">Encontrado en la vía perimetral. Estado: en adopción.</p>
+        </article>
 
-      <article>
-        <h3><a href="rescates.html#caso-004">Lechuza — fauna silvestre</a></h3>
-        <p>Ala fracturada. Estado: en tratamiento, con liberación programada.</p>
-      </article>
+        <article class="tarjeta">
+          <p class="tarjeta__meta"><span class="etiqueta">Fauna silvestre</span></p>
+          <h3><a href="rescates.html#caso-004">Lechuza — fauna silvestre</a></h3>
+          <p class="tarjeta__texto">Ala fracturada. En tratamiento, con liberación programada.</p>
+        </article>
+      </div>
     </section>
 
     <!-- Categorías atendidas -->
-    <section aria-labelledby="categorias-titulo">
-      <h2 id="categorias-titulo">Categorías atendidas</h2>
+    <section class="seccion" aria-labelledby="categorias-titulo">
+      <h2 class="seccion__titulo" id="categorias-titulo">Categorías atendidas</h2>
 
-      <article>
-        <img src="assets/img/perro.svg" alt="Ilustración de un perro" width="64" height="64">
-        <h3>Perros</h3>
-        <p>Rescates caninos con protocolo de adopción y seguimiento clínico.</p>
-      </article>
+      <div class="rejilla">
+        <article class="tarjeta tarjeta--centrada">
+          <img class="tarjeta__img" src="assets/img/perro.svg" alt="Ilustración de un perro" width="64" height="64">
+          <h3>Perros</h3>
+          <p class="tarjeta__texto">Rescates caninos con protocolo de adopción y seguimiento clínico.</p>
+        </article>
 
-      <article>
-        <img src="assets/img/gato.svg" alt="Ilustración de un gato" width="64" height="64">
-        <h3>Gatos</h3>
-        <p>Rescates felinos con expediente clínico diferenciado.</p>
-      </article>
+        <article class="tarjeta tarjeta--centrada">
+          <img class="tarjeta__img" src="assets/img/gato.svg" alt="Ilustración de un gato" width="64" height="64">
+          <h3>Gatos</h3>
+          <p class="tarjeta__texto">Rescates felinos con expediente clínico diferenciado.</p>
+        </article>
 
-      <article>
-        <img src="assets/img/fauna.svg" alt="Ilustración de fauna silvestre" width="64" height="64">
-        <h3>Fauna silvestre</h3>
-        <p>Especies silvestres derivadas a rehabilitación y liberación.</p>
-      </article>
+        <article class="tarjeta tarjeta--centrada">
+          <img class="tarjeta__img" src="assets/img/fauna.svg" alt="Ilustración de fauna silvestre" width="64" height="64">
+          <h3>Fauna silvestre</h3>
+          <p class="tarjeta__texto">Especies silvestres derivadas a rehabilitación y liberación.</p>
+        </article>
+      </div>
     </section>
 
   </main>
 
   <!-- Pie de página común -->
-  <footer>
-    <address>
-      Refugio Patitas · Av. de los Rescatistas 145, Portoviejo<br>
-      <a href="tel:+593980000000">+593 98 000 0000</a> ·
-      <a href="mailto:contacto@refugiopatitas.ec">contacto@refugiopatitas.ec</a>
-    </address>
-    <p>&copy; 2026 Refugio Patitas. Todos los derechos reservados.</p>
+  <footer class="pie">
+    <div class="pie__contenido">
+
+      <section class="pie__bloque">
+        <h2 class="pie__titulo">Refugio Patitas</h2>
+        <p class="pie__texto">
+          Sistema de control de rescate y adopción animal. Prototipo estructural de la
+          Unidad 2 — Desarrollo de Sistemas Informáticos, UTM.
+        </p>
+      </section>
+
+      <nav class="pie__bloque" aria-label="Enlaces del pie">
+        <h2 class="pie__titulo">Navegación</h2>
+        <ul class="pie__lista">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="reportar.html">Reportar rescate</a></li>
+          <li><a href="rescates.html">Casos registrados</a></li>
+        </ul>
+      </nav>
+
+      <section class="pie__bloque">
+        <h2 class="pie__titulo">Contacto</h2>
+        <address>
+          Av. de los Rescatistas 145, Portoviejo<br>
+          <a href="tel:+593980000000">+593 98 000 0000</a><br>
+          <a href="mailto:contacto@refugiopatitas.ec">contacto@refugiopatitas.ec</a>
+        </address>
+      </section>
+
+    </div>
+
+    <div class="pie__legal">
+      <p>&copy; 2026 Refugio Patitas. Todos los derechos reservados.</p>
+      <p>Diseñado por Cristopher Montoya</p>
+    </div>
   </footer>
 
 </body>
