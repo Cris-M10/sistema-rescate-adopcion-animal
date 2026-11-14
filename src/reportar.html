@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Formulario para registrar un nuevo animal rescatado en el Refugio Patitas.">
+  <meta name="author" content="Cristopher Montoya">
+  <title>Reportar rescate · Refugio Patitas</title>
+</head>
+<body>
+
+  <!-- Encabezado común: logo y navegación -->
+  <header>
+    <a href="index.html" title="Ir al panel de control">
+      <img src="assets/img/logo.svg" alt="Logotipo del Refugio Patitas" width="48" height="48">
+      <span>Refugio Patitas</span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="reportar.html" aria-current="page">Reportar rescate</a></li>
+        <li><a href="rescates.html">Casos registrados</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido exclusivo de la página -->
+  <main>
+
+    <section aria-labelledby="reporte-titulo">
+      <h1 id="reporte-titulo">Reportar un nuevo rescate</h1>
+      <p>
+        Complete el siguiente formulario para ingresar un nuevo caso al sistema.
+        Los campos marcados como obligatorios son indispensables para iniciar el expediente.
+      </p>
+    </section>
+
+    <section aria-labelledby="formulario-titulo">
+      <h2 id="formulario-titulo">Formulario de ingreso</h2>
+
+      <form action="#" method="post">
+
+        <fieldset>
+          <legend>Datos del animal</legend>
+
+          <div>
+            <label for="titulo">Título del caso o nombre provisional <strong>(obligatorio)</strong></label>
+            <input type="text" id="titulo" name="titulo" placeholder="Ej.: Luna — perro adulto"
+                   maxlength="100" required>
+          </div>
+
+          <div>
+            <label for="categoria">Categoría <strong>(obligatorio)</strong></label>
+            <select id="categoria" name="categoria" required>
+              <option value="" selected>Seleccione una categoría…</option>
+              <option value="perro">Perros</option>
+              <option value="gato">Gatos</option>
+              <option value="fauna">Fauna Silvestre</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Nivel de urgencia médica</legend>
+
+          <label>
+            <input type="radio" name="urgencia" value="alta" required>
+            Alta — requiere atención inmediata
+          </label>
+
+          <label>
+            <input type="radio" name="urgencia" value="media">
+            Media — estable, pero necesita revisión
+          </label>
+
+          <label>
+            <input type="radio" name="urgencia" value="baja">
+            Baja — sin riesgo aparente
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Descripción del hallazgo</legend>
+
+          <div>
+            <label for="descripcion">Estado en que se encontró al animal <strong>(obligatorio)</strong></label>
+            <textarea id="descripcion" name="descripcion" rows="6" cols="50"
+                      placeholder="Describa el lugar, el estado físico del animal y cualquier detalle relevante…"
+                      required></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Ubicación y contacto</legend>
+
+          <div>
+            <label for="ubicacion">Ubicación del hallazgo <strong>(obligatorio)</strong></label>
+            <input type="text" id="ubicacion" name="ubicacion" placeholder="Sector, calle y referencia" required>
+          </div>
+
+          <div>
+            <label for="fecha">Fecha del hallazgo</label>
+            <input type="date" id="fecha" name="fecha">
+          </div>
+
+          <div>
+            <label for="reportante">Nombre del reportante</label>
+            <input type="text" id="reportante" name="reportante" placeholder="Nombre y apellido">
+          </div>
+
+          <div>
+            <label for="telefono">Teléfono de contacto</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+593 9X XXX XXXX">
+          </div>
+
+          <div>
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com">
+          </div>
+
+          <div>
+            <label for="evidencia">Evidencia fotográfica</label>
+            <input type="file" id="evidencia" name="evidencia" accept="image/*">
+          </div>
+        </fieldset>
+
+        <div>
+          <button type="submit">Registrar caso</button>
+          <button type="reset">Limpiar formulario</button>
+        </div>
+
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Pie de página común -->
+  <footer>
+    <address>
+      Refugio Patitas · Av. de los Rescatistas 145, Portoviejo<br>
+      <a href="tel:+593980000000">+593 98 000 0000</a> ·
+      <a href="mailto:contacto@refugiopatitas.ec">contacto@refugiopatitas.ec</a>
+    </address>
+    <p>&copy; 2026 Refugio Patitas. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
