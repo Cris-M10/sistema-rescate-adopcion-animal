@@ -6,129 +6,191 @@
   <meta name="description" content="Listado organizado de los casos de rescate registrados en el Refugio Patitas.">
   <meta name="author" content="Cristopher Montoya">
   <title>Casos registrados · Refugio Patitas</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
   <!-- Encabezado común: logo y navegación -->
-  <header>
-    <a href="index.html" title="Ir al panel de control">
-      <img src="assets/img/logo.svg" alt="Logotipo del Refugio Patitas" width="48" height="48">
-      <span>Refugio Patitas</span>
-    </a>
-    <nav aria-label="Navegación principal">
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="reportar.html">Reportar rescate</a></li>
-        <li><a href="rescates.html" aria-current="page">Casos registrados</a></li>
-      </ul>
-    </nav>
+  <header class="cabecera">
+    <div class="cabecera__barra">
+
+      <a class="marca" href="index.html">
+        <span class="marca__icono">
+          <img src="assets/img/logo.svg" alt="" width="24" height="24">
+        </span>
+        <span class="marca__texto">
+          <strong>Refugio Patitas</strong>
+          <small>Rescate y adopción</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <ul class="nav__lista">
+          <li><a class="nav__enlace" href="index.html">Inicio</a></li>
+          <li><a class="nav__enlace" href="reportar.html">Reportar rescate</a></li>
+          <li><a class="nav__enlace nav__enlace--activo" href="rescates.html" aria-current="page">Casos registrados</a></li>
+        </ul>
+      </nav>
+
+      <a class="btn btn--acento btn--chico" href="reportar.html">Nuevo caso</a>
+
+    </div>
   </header>
 
   <!-- Contenido exclusivo de la página -->
   <main>
 
-    <section aria-labelledby="listado-titulo">
+    <!-- Portada -->
+    <section class="portada" aria-labelledby="listado-titulo">
+      <p class="portada__etiqueta">Registro · Refugio</p>
       <h1 id="listado-titulo">Casos registrados</h1>
-      <p>
+      <p class="portada__bajada">
         Registro organizado de todos los animales rescatados por el refugio.
-        El estado de cada caso sigue el ciclo <em>Reportado → Rescatado → En tratamiento → Adopción</em>
+        El estado de cada caso sigue el ciclo
+        <em>Reportado → Rescatado → En tratamiento → Adopción</em>
         (o <em>Liberación</em> para fauna silvestre).
       </p>
     </section>
 
-    <section aria-labelledby="tabla-titulo">
-      <h2 id="tabla-titulo">Tabla de casos</h2>
+    <!-- Tabla de casos -->
+    <section class="seccion" aria-labelledby="tabla-titulo">
+      <h2 class="seccion__titulo" id="tabla-titulo">Tabla de casos</h2>
 
-      <table>
-        <caption>Registro de casos de rescate y adopción</caption>
+      <div class="tabla-contenedor">
+        <table class="tabla">
+          <caption>Registro de casos de rescate y adopción</caption>
 
-        <thead>
-          <tr>
-            <th scope="col">Código</th>
-            <th scope="col">Título del caso</th>
-            <th scope="col">Categoría</th>
-            <th scope="col">Urgencia</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Responsable</th>
-            <th scope="col">Fecha de ingreso</th>
-          </tr>
-        </thead>
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Título del caso</th>
+              <th scope="col">Categoría</th>
+              <th scope="col">Urgencia</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Responsable</th>
+              <th scope="col">Fecha de ingreso</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr id="caso-006">
-            <th scope="row">RES-006</th>
-            <td>Luna — perro adulto</td>
-            <td>Perro</td>
-            <td>Alta</td>
-            <td>En tratamiento</td>
-            <td>Dra. Ana Vélez</td>
-            <td>2026-11-10</td>
-          </tr>
-          <tr id="caso-005">
-            <th scope="row">RES-005</th>
-            <td>Bigotes — gato cachorro</td>
-            <td>Gato</td>
-            <td>Media</td>
-            <td>En adopción</td>
-            <td>Vol. Luis Mendoza</td>
-            <td>2026-11-07</td>
-          </tr>
-          <tr id="caso-004">
-            <th scope="row">RES-004</th>
-            <td>Lechuza — fauna silvestre</td>
-            <td>Fauna silvestre</td>
-            <td>Alta</td>
-            <td>En tratamiento</td>
-            <td>Vet. Carla Rojas</td>
-            <td>2026-11-03</td>
-          </tr>
-          <tr id="caso-003">
-            <th scope="row">RES-003</th>
-            <td>Rocky — perro cachorro</td>
-            <td>Perro</td>
-            <td>Baja</td>
-            <td>Adoptado</td>
-            <td>Vol. Pedro Solís</td>
-            <td>2026-10-28</td>
-          </tr>
-          <tr id="caso-002">
-            <th scope="row">RES-002</th>
-            <td>Michi — gato adulto</td>
-            <td>Gato</td>
-            <td>Media</td>
-            <td>En tratamiento</td>
-            <td>Dra. Ana Vélez</td>
-            <td>2026-10-21</td>
-          </tr>
-          <tr id="caso-001">
-            <th scope="row">RES-001</th>
-            <td>Zorro — fauna silvestre</td>
-            <td>Fauna silvestre</td>
-            <td>Media</td>
-            <td>Liberado</td>
-            <td>Vet. Carla Rojas</td>
-            <td>2026-10-12</td>
-          </tr>
-        </tbody>
+          <tbody>
+            <tr id="caso-006">
+              <th scope="row">RES-006</th>
+              <td>Luna — perro adulto</td>
+              <td><span class="etiqueta">Perro</span></td>
+              <td><span class="urgencia urgencia--alta">Alta</span></td>
+              <td><span class="estado estado--tratamiento">En tratamiento</span></td>
+              <td>Dra. Ana Vélez</td>
+              <td>2026-11-10</td>
+            </tr>
+            <tr id="caso-005">
+              <th scope="row">RES-005</th>
+              <td>Bigotes — gato cachorro</td>
+              <td><span class="etiqueta">Gato</span></td>
+              <td><span class="urgencia urgencia--media">Media</span></td>
+              <td><span class="estado estado--adopcion">En adopción</span></td>
+              <td>Vol. Luis Mendoza</td>
+              <td>2026-11-07</td>
+            </tr>
+            <tr id="caso-004">
+              <th scope="row">RES-004</th>
+              <td>Lechuza — fauna silvestre</td>
+              <td><span class="etiqueta">Fauna silvestre</span></td>
+              <td><span class="urgencia urgencia--alta">Alta</span></td>
+              <td><span class="estado estado--tratamiento">En tratamiento</span></td>
+              <td>Vet. Carla Rojas</td>
+              <td>2026-11-03</td>
+            </tr>
+            <tr id="caso-003">
+              <th scope="row">RES-003</th>
+              <td>Rocky — perro cachorro</td>
+              <td><span class="etiqueta">Perro</span></td>
+              <td><span class="urgencia urgencia--baja">Baja</span></td>
+              <td><span class="estado estado--adoptado">Adoptado</span></td>
+              <td>Vol. Pedro Solís</td>
+              <td>2026-10-28</td>
+            </tr>
+            <tr id="caso-002">
+              <th scope="row">RES-002</th>
+              <td>Michi — gato adulto</td>
+              <td><span class="etiqueta">Gato</span></td>
+              <td><span class="urgencia urgencia--media">Media</span></td>
+              <td><span class="estado estado--tratamiento">En tratamiento</span></td>
+              <td>Dra. Ana Vélez</td>
+              <td>2026-10-21</td>
+            </tr>
+            <tr id="caso-001">
+              <th scope="row">RES-001</th>
+              <td>Zorro — fauna silvestre</td>
+              <td><span class="etiqueta">Fauna silvestre</span></td>
+              <td><span class="urgencia urgencia--media">Media</span></td>
+              <td><span class="estado estado--liberado">Liberado</span></td>
+              <td>Vet. Carla Rojas</td>
+              <td>2026-10-12</td>
+            </tr>
+          </tbody>
 
-        <tfoot>
-          <tr>
-            <td colspan="7">Total de casos registrados: 6</td>
-          </tr>
-        </tfoot>
-      </table>
+          <tfoot>
+            <tr>
+              <td colspan="7">Total de casos registrados: 6</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <!-- Leyenda de estados -->
+    <section class="seccion" aria-labelledby="leyenda-titulo">
+      <h2 class="seccion__titulo" id="leyenda-titulo">Leyenda</h2>
+
+      <div class="leyenda">
+        <span><span class="urgencia urgencia--alta">Alta</span> — atención inmediata</span>
+        <span><span class="urgencia urgencia--media">Media</span> — revisión prioritaria</span>
+        <span><span class="urgencia urgencia--baja">Baja</span> — sin riesgo aparente</span>
+        <span><span class="estado estado--tratamiento">En tratamiento</span></span>
+        <span><span class="estado estado--adopcion">En adopción</span></span>
+        <span><span class="estado estado--adoptado">Adoptado</span></span>
+        <span><span class="estado estado--liberado">Liberado</span></span>
+      </div>
     </section>
 
   </main>
 
   <!-- Pie de página común -->
-  <footer>
-    <address>
-      Refugio Patitas · Av. de los Rescatistas 145, Portoviejo<br>
-      <a href="tel:+593980000000">+593 98 000 0000</a> ·
-      <a href="mailto:contacto@refugiopatitas.ec">contacto@refugiopatitas.ec</a>
-    </address>
-    <p>&copy; 2026 Refugio Patitas. Todos los derechos reservados.</p>
+  <footer class="pie">
+    <div class="pie__contenido">
+
+      <section class="pie__bloque">
+        <h2 class="pie__titulo">Refugio Patitas</h2>
+        <p class="pie__texto">
+          Sistema de control de rescate y adopción animal. Prototipo estructural de la
+          Unidad 2 — Desarrollo de Sistemas Informáticos, UTM.
+        </p>
+      </section>
+
+      <nav class="pie__bloque" aria-label="Enlaces del pie">
+        <h2 class="pie__titulo">Navegación</h2>
+        <ul class="pie__lista">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="reportar.html">Reportar rescate</a></li>
+          <li><a href="rescates.html">Casos registrados</a></li>
+        </ul>
+      </nav>
+
+      <section class="pie__bloque">
+        <h2 class="pie__titulo">Contacto</h2>
+        <address>
+          Av. de los Rescatistas 145, Portoviejo<br>
+          <a href="tel:+593980000000">+593 98 000 0000</a><br>
+          <a href="mailto:contacto@refugiopatitas.ec">contacto@refugiopatitas.ec</a>
+        </address>
+      </section>
+
+    </div>
+
+    <div class="pie__legal">
+      <p>&copy; 2026 Refugio Patitas. Todos los derechos reservados.</p>
+      <p>Diseñado por Cristopher Montoya</p>
+    </div>
   </footer>
 
 </body>

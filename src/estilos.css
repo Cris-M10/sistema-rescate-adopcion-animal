@@ -1,0 +1,794 @@
+/* ==========================================================================
+   Refugio Patitas — hoja de estilos principal
+   Sistema de Control de Rescate y Adopción Animal · HTML5 semántico + CSS
+   Basada en el estilo del prototipo de la Unidad anterior.
+   ========================================================================== */
+
+/* ---------- 1. Variables y reset ---------- */
+:root {
+  color-scheme: dark;
+
+  --fondo:        #0e1014;
+  --superficie:   #15181e;
+  --superficie-2: #1b1f27;
+  --borde:        #262b34;
+  --texto:        #e8eaed;
+  --texto-suave:  #98a2b3;
+  --acento:       #cdf564;
+  --acento-oscuro:#a8d13c;
+
+  /* Colores semánticos para estados y urgencias */
+  --peligro: #f08a8a;
+  --alerta:  #f5c26b;
+  --ok:      #7ee0b0;
+  --info:    #7fb5f7;
+  --lila:    #c8a2ff;
+
+  --fuente-titulo: ui-serif, Georgia, "Times New Roman", serif;
+  --fuente-cuerpo: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fuente-mono:   ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --radio:   10px;
+  --ancho:   1280px;
+  --transicion: 180ms ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  background-color: var(--fondo);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .022) 1px, transparent 1px);
+  background-size: 48px 48px;
+  color: var(--texto);
+  font-family: var(--fuente-cuerpo);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Accesibilidad: foco siempre visible */
+:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- 2. Cabecera y navbar ---------- */
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(14, 16, 20, .82);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--borde);
+}
+
+.cabecera__barra {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: .85rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  flex-shrink: 0;
+}
+
+.marca__icono {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background-color: var(--acento);
+}
+
+.marca__icono img {
+  width: 24px;
+  height: 24px;
+}
+
+.marca__texto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.marca__texto strong {
+  font-family: var(--fuente-titulo);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+.marca__texto small {
+  font-size: .7rem;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+.nav {
+  margin-left: auto;
+}
+
+.nav__lista {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+}
+
+.nav__enlace {
+  display: block;
+  padding: .5rem .85rem;
+  border-radius: 7px;
+  font-size: .92rem;
+  color: var(--texto-suave);
+  white-space: nowrap;
+  transition: color var(--transicion), background-color var(--transicion);
+}
+
+.nav__enlace:hover {
+  color: var(--texto);
+  background-color: var(--superficie-2);
+}
+
+.nav__enlace--activo {
+  color: var(--texto);
+  background-color: var(--superficie-2);
+  box-shadow: inset 0 -2px 0 var(--acento);
+}
+
+/* ---------- 3. Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .62rem 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-family: var(--fuente-cuerpo);
+  font-size: .9rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--transicion), color var(--transicion),
+              border-color var(--transicion);
+}
+
+.btn--acento {
+  background-color: var(--acento);
+  color: #0e1014;
+}
+
+.btn--acento:hover {
+  background-color: var(--acento-oscuro);
+}
+
+.btn--fantasma {
+  background-color: transparent;
+  border-color: var(--borde);
+  color: var(--texto);
+}
+
+.btn--fantasma:hover {
+  border-color: var(--acento-oscuro);
+  color: var(--acento);
+}
+
+.btn--chico {
+  padding: .5rem .9rem;
+  font-size: .84rem;
+}
+
+/* ---------- 4. Portada ---------- */
+.portada {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 4.5rem 2rem 3rem;
+  border-bottom: 1px solid var(--borde);
+}
+
+.portada__etiqueta {
+  display: inline-block;
+  margin-bottom: 1.1rem;
+  padding: .28rem .7rem;
+  border: 1px solid rgba(205, 245, 100, .35);
+  border-radius: 999px;
+  color: var(--acento);
+  font-size: .74rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.portada h1 {
+  max-width: 22ch;
+  font-family: var(--fuente-titulo);
+  font-size: clamp(2.1rem, 5vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -.02em;
+}
+
+.portada__bajada {
+  max-width: 62ch;
+  margin-top: 1.4rem;
+  font-size: 1.06rem;
+  color: var(--texto-suave);
+}
+
+.portada__acciones {
+  margin-top: 1.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+/* ---------- 5. Secciones y tarjetas ---------- */
+.seccion {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 3rem 2rem 0;
+}
+
+.seccion:last-of-type {
+  padding-bottom: 5rem;
+}
+
+.seccion__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  margin-bottom: 1.25rem;
+}
+
+.seccion__titulo::before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: .55rem;
+  border-radius: 50%;
+  background-color: var(--acento);
+  vertical-align: .1em;
+}
+
+/* Resumen de indicadores */
+.resumen {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.stat {
+  background-color: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.5rem 1.6rem;
+  transition: border-color var(--transicion), transform var(--transicion);
+}
+
+.stat:hover {
+  border-color: var(--acento-oscuro);
+  transform: translateY(-2px);
+}
+
+.stat__num {
+  font-family: var(--fuente-titulo);
+  font-size: 2.6rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--acento);
+}
+
+.stat__label {
+  margin-top: .55rem;
+  font-size: .8rem;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  letter-spacing: .09em;
+}
+
+/* Rejilla de tarjetas */
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.tarjeta {
+  background-color: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.4rem 1.5rem;
+  transition: border-color var(--transicion), transform var(--transicion);
+}
+
+.tarjeta:hover {
+  border-color: var(--acento-oscuro);
+}
+
+.tarjeta--centrada {
+  text-align: center;
+}
+
+.tarjeta__meta {
+  margin-bottom: .55rem;
+}
+
+.tarjeta__img {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto .9rem;
+}
+
+.tarjeta h3 {
+  font-family: var(--fuente-titulo);
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.tarjeta h3 a {
+  background-image: linear-gradient(var(--acento), var(--acento));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 260ms ease, color var(--transicion);
+}
+
+.tarjeta h3 a:hover {
+  color: var(--acento);
+  background-size: 100% 1px;
+}
+
+.tarjeta__texto {
+  margin-top: .55rem;
+  font-size: .9rem;
+  color: var(--texto-suave);
+}
+
+/* Etiquetas / chips */
+.etiqueta {
+  display: inline-block;
+  padding: .12rem .5rem;
+  border-radius: 4px;
+  background-color: var(--superficie-2);
+  border: 1px solid var(--borde);
+  color: var(--texto);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* ---------- 6. Formulario ---------- */
+.formulario {
+  max-width: 760px;
+}
+
+.formulario__grupo {
+  background-color: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.5rem 1.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.formulario__grupo legend {
+  font-family: var(--fuente-titulo);
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 0 .6rem;
+  color: var(--acento);
+}
+
+.campo {
+  margin-bottom: 1.1rem;
+}
+
+.campo:last-child {
+  margin-bottom: 0;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: .4rem;
+  font-size: .88rem;
+  color: var(--texto);
+}
+
+label.obligatorio::after {
+  content: " *";
+  color: var(--acento);
+}
+
+.campo input[type="text"],
+.campo input[type="tel"],
+.campo input[type="email"],
+.campo input[type="date"],
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: .6rem .8rem;
+  background-color: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  color: var(--texto);
+  font-family: inherit;
+  font-size: .92rem;
+  transition: border-color var(--transicion);
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  border-color: var(--acento-oscuro);
+  outline: none;
+}
+
+.campo textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+  color: #667085;
+}
+
+.campo input[type="file"] {
+  color: var(--texto-suave);
+  font-size: .88rem;
+}
+
+.campo input[type="file"]::file-selector-button {
+  margin-right: .8rem;
+  padding: .45rem .9rem;
+  border: 1px solid var(--borde);
+  border-radius: 7px;
+  background-color: var(--superficie-2);
+  color: var(--texto);
+  font-family: inherit;
+  font-size: .82rem;
+  cursor: pointer;
+}
+
+/* Distribución en dos columnas dentro de un fieldset */
+.campos-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1.1rem;
+}
+
+/* Opciones de radio */
+.radios {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .6rem .8rem;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background-color: var(--fondo);
+  font-size: .9rem;
+  cursor: pointer;
+  transition: border-color var(--transicion);
+}
+
+.radio:hover {
+  border-color: var(--acento-oscuro);
+}
+
+.radio input {
+  accent-color: var(--acento);
+}
+
+.formulario__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- 7. Tabla de casos ---------- */
+.tabla-contenedor {
+  overflow-x: auto;
+  background-color: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.tabla {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+
+.tabla caption {
+  caption-side: top;
+  text-align: left;
+  padding: .9rem 1.1rem;
+  border-bottom: 1px solid var(--borde);
+  font-family: var(--fuente-titulo);
+  font-size: .92rem;
+  color: var(--texto-suave);
+}
+
+.tabla thead th {
+  text-align: left;
+  padding: .8rem 1.1rem;
+  background-color: var(--superficie-2);
+  border-bottom: 1px solid var(--borde);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+.tabla td,
+.tabla tbody th {
+  padding: .85rem 1.1rem;
+  border-bottom: 1px solid var(--borde);
+  vertical-align: middle;
+}
+
+.tabla tbody th[scope="row"] {
+  font-family: var(--fuente-mono);
+  font-weight: 500;
+  color: var(--acento);
+}
+
+.tabla tbody tr {
+  transition: background-color var(--transicion);
+}
+
+.tabla tbody tr:hover {
+  background-color: var(--superficie-2);
+}
+
+.tabla tbody tr:last-child th,
+.tabla tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.tabla tfoot td {
+  padding: .8rem 1.1rem;
+  background-color: var(--superficie-2);
+  font-size: .8rem;
+  color: var(--texto-suave);
+}
+
+/* Insignias de urgencia y estado */
+.urgencia,
+.estado {
+  display: inline-block;
+  padding: .18rem .62rem;
+  border-radius: 999px;
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.urgencia--alta { color: var(--peligro); background: rgba(240, 138, 138, .12); border: 1px solid rgba(240, 138, 138, .35); }
+.urgencia--media { color: var(--alerta); background: rgba(245, 194, 107, .12); border: 1px solid rgba(245, 194, 107, .35); }
+.urgencia--baja { color: var(--ok); background: rgba(126, 224, 176, .12); border: 1px solid rgba(126, 224, 176, .35); }
+
+.estado--tratamiento { color: var(--info); background: rgba(127, 181, 247, .12); border: 1px solid rgba(127, 181, 247, .35); }
+.estado--adopcion { color: var(--lila); background: rgba(200, 162, 255, .12); border: 1px solid rgba(200, 162, 255, .35); }
+.estado--adoptado { color: var(--ok); background: rgba(126, 224, 176, .12); border: 1px solid rgba(126, 224, 176, .35); }
+.estado--liberado { color: var(--acento); background: rgba(205, 245, 100, .12); border: 1px solid rgba(205, 245, 100, .35); }
+
+/* Leyenda de estados */
+.leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem .9rem;
+  font-size: .82rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- 8. Pie de página ---------- */
+.pie {
+  background-color: #0a0c0f;
+  border-top: 1px solid var(--borde);
+}
+
+.pie__contenido {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 3.5rem 2rem 2.5rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.pie__titulo {
+  margin-bottom: .9rem;
+  font-family: var(--fuente-titulo);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+.pie__texto {
+  max-width: 46ch;
+  font-size: .88rem;
+  color: var(--texto-suave);
+}
+
+.pie__bloque address {
+  font-size: .88rem;
+  color: var(--texto-suave);
+}
+
+.pie__bloque address a {
+  transition: color var(--transicion);
+}
+
+.pie__bloque address a:hover {
+  color: var(--acento);
+}
+
+.pie__lista li + li {
+  margin-top: .5rem;
+}
+
+.pie__lista a {
+  font-size: .88rem;
+  color: var(--texto-suave);
+  transition: color var(--transicion);
+}
+
+.pie__lista a:hover {
+  color: var(--acento);
+}
+
+.pie__legal {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 1.25rem 2rem 2rem;
+  border-top: 1px solid var(--borde);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: .78rem;
+  color: #667085;
+}
+
+/* ---------- 9. Adaptación a pantallas menores ---------- */
+@media (max-width: 1100px) {
+  .cabecera__barra {
+    flex-wrap: wrap;
+    gap: .75rem 1.25rem;
+  }
+
+  .nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav__lista {
+    padding-bottom: .25rem;
+  }
+
+  .resumen {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rejilla {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 150px;
+  }
+
+  .cabecera__barra,
+  .portada,
+  .seccion,
+  .pie__contenido,
+  .pie__legal {
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+
+  .portada {
+    padding-top: 2.8rem;
+    padding-bottom: 2rem;
+  }
+
+  .seccion {
+    padding-top: 2.25rem;
+  }
+
+  .rejilla {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .campos-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pie__contenido {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    padding-top: 2.5rem;
+  }
+
+  .pie__legal {
+    flex-direction: column;
+    gap: .35rem;
+  }
+}
+
+/* ---------- 10. Preferencias de movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}
